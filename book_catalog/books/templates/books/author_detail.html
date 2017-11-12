@@ -1,0 +1,11 @@
+<h1>{{ object.name }}</h1>
+<h2>{{ object.id }}</h2>
+{% for book in book_list%}
+<ul>
+    <li>
+        {{ book.title }}
+    </li>
+</ul>
+{% endfor %}
+<a href="{% url 'author-update' author.id %}">Изменить</a>
+<a href="{% url 'author-delete' author.id %}">Удалить</a>
