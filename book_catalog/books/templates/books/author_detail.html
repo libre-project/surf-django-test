@@ -12,9 +12,11 @@
         </a>
         {% endfor %}
     </ul>
+    {% if user.is_authenticated %}
     <div class="card-body">
         <a class="btn btn-primary btn-sm" href="{% url 'author-update' author.id %}">Изменить</a>
         <a class="btn btn-primary btn-sm" href="{% url 'author-delete' author.id %}">Удалить</a>
     </div>
+    {% endif %}
 </div>
 {% endblock %}

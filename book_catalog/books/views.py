@@ -6,16 +6,21 @@ from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from .models import Author, Book
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
+@method_decorator(login_required, name='dispatch')
 class AuthorCreate(CreateView):
     model = Author
     fields = ['name']
     success_url = reverse_lazy('author-list')
 
+@method_decorator(login_required, name='dispatch')
 class AuthorUpdate(UpdateView):
     model = Author
     fields = ['name']
 
+@method_decorator(login_required, name='dispatch')
 class AuthorDelete(DeleteView):
     model = Author
     success_url = reverse_lazy('author-list')
@@ -41,15 +46,18 @@ class AuthorSearchView(ListView):
             result = result.filter(author__icontains = name)
         return result
 
+@method_decorator(login_required, name='dispatch')
 class BookCreate(CreateView):
     model = Book
     fields = ['title', 'author']
 
+@method_decorator(login_required, name='dispatch')
 class BookUpdate(UpdateView):
     model = Book
     fields = ['title', 'author']
     success_url = reverse_lazy('author-list')
 
+@method_decorator(login_required, name='dispatch')
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('author-list')
