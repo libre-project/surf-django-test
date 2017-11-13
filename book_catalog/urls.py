@@ -15,16 +15,23 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from .books.views import AuthorCreate, AuthorUpdate, AuthorDelete, AuthorDetail, AuthorList
-from .books.views import BookCreate, BookUpdate, BookDelete, BookDetail, BookList
+from .books.views import *
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
+    url(r'^$', BookList.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'author/$', AuthorList.as_view(), name='author-list'),
-    url(r'author/(?P<pk>\d+)/$', AuthorDetail.as_view(), name='author-detail'),
-    url(r'author/new/$', AuthorCreate.as_view(), name='author-new'),
-    url(r'author/edit/(?P<pk>\d+)/$', AuthorUpdate.as_view(), name='author-update'),
-    url(r'author/delete/(?P<pk>\d+)/$', AuthorDelete.as_view(), name='author-delete'),
-    url(r'book/$', BookList.as_view(), name='book-list')
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^author/$', AuthorList.as_view(), name='author-list'),
+    url(r'^author/(?P<pk>\d+)/$', AuthorDetail.as_view(), name='author-detail'),
+    url(r'^author/new/$', AuthorCreate.as_view(), name='author-new'),
+    url(r'^author/edit/(?P<pk>\d+)/$', AuthorUpdate.as_view(), name='author-update'),
+    url(r'^author/delete/(?P<pk>\d+)/$', AuthorDelete.as_view(), name='author-delete'),
+    url(r'^book/$', BookList.as_view(), name='book-list'),
+    url(r'^book/(?P<pk>\d+)/$', BookDetail.as_view(), name='book-detail'),
+    url(r'^book/new/$', BookCreate.as_view(), name='book-new'),
+    url(r'^book/edit/(?P<pk>\d+)/$', BookUpdate.as_view(), name='book-update'),
+    url(r'^book/delete/(?P<pk>\d+)/$', BookDelete.as_view(), name='book-delete'),
+    url(r'^search/$', BookSearchView.as_view(), name='search'),
 ]

@@ -1,11 +1,20 @@
-<h1>{{ object.name }}</h1>
-<h2>{{ object.id }}</h2>
-{% for book in book_list%}
-<ul>
-    <li>
-        {{ book.title }}
-    </li>
-</ul>
-{% endfor %}
-<a href="{% url 'author-update' author.id %}">Изменить</a>
-<a href="{% url 'author-delete' author.id %}">Удалить</a>
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h4 class="card-title">{{ object.name }}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">id {{ object.id }}</h6>
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for book in book_list%}
+        <a class="list-group-item list-group-item-action"  href="{% url 'book-detail' book.id %}">
+            {{ book.title }}
+        </a>
+        {% endfor %}
+    </ul>
+    <div class="card-body">
+        <a class="btn btn-primary btn-sm" href="{% url 'author-update' author.id %}">Изменить</a>
+        <a class="btn btn-primary btn-sm" href="{% url 'author-delete' author.id %}">Удалить</a>
+    </div>
+</div>
+{% endblock %}

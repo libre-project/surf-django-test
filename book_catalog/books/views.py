@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from .models import Author, Book
+from django.db.models import Q
 
 class AuthorCreate(CreateView):
     model = Author
@@ -31,6 +32,15 @@ class AuthorList(ListView):
     model = Author
     context_object_name = 'authors_list'
 
+class AuthorSearchView(ListView):
+    model = Author
+    def get_queryset(self):
+        result = super(AuthorSearchView, self).get_queryset()
+        name = self.request.GET.get('q')
+        if name:
+            result = result.filter(author__icontains = name)
+        return result
+
 class BookCreate(CreateView):
     model = Book
     fields = ['title', 'author']
@@ -49,3 +59,15 @@ class BookDetail(DetailView):
 
 class BookList(ListView):
     model = Book
+    context_object_name = 'books_list'
+
+class BookSearchView(ListView):
+    model = Book
+    context_object_name = 'books_list'
+    # template_name = 'search_form.html'
+    def get_queryset(self):
+        result = super(BookSearchView, self).get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            result = result.filter(Q(title__icontains = query) | Q(author__name__icontains = query))
+        return result

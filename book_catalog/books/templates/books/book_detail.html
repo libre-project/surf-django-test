@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h4 class="card-title">{{ object.title }}</h4>
+        <h6 class="card-subtitle mb-2"><a class="card-subtitle" href="{% url 'author-detail'  object.author.id  %}">{{ object.author }}</a></h6>
+        <h6 class="card-subtitle mb-2 text-muted">id {{ object.id }}</h6>
+        <a class="btn btn-primary btn-sm" href="{% url 'book-update' object.id %}">Изменить</a>
+        <a class="btn btn-primary btn-sm" href="{% url 'book-delete' object.id %}">Удалить</a>
+    </div>
+</div>
+{% endblock %}

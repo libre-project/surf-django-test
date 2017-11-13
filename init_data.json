@@ -1,0 +1,110 @@
+[
+   {
+      "model":"books.author",
+      "pk":6,
+      "fields":{
+         "name":"George Orwell"
+      }
+   },
+   {
+      "model":"books.author",
+      "pk":7,
+      "fields":{
+         "name":"Aldous Huxley"
+      }
+   },
+   {
+      "model":"books.author",
+      "pk":8,
+      "fields":{
+         "name":"William Golding"
+      }
+   },
+   {
+      "model":"books.author",
+      "pk":9,
+      "fields":{
+         "name":"Yevgeny Zamyatin"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":7,
+      "fields":{
+         "author":6,
+         "title":"1984"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":8,
+      "fields":{
+         "author":6,
+         "title":"Animal Farm"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":9,
+      "fields":{
+         "author":9,
+         "title":"We"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":10,
+      "fields":{
+         "author":8,
+         "title":"Lord of the Flies"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":11,
+      "fields":{
+         "author":7,
+         "title":"Brave New World"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":12,
+      "fields":{
+         "author":6,
+         "title":"Coming Up for Air"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":13,
+      "fields":{
+         "author":9,
+         "title":"The Fisher of Men"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":14,
+      "fields":{
+         "author":8,
+         "title":"The Inheritors"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":15,
+      "fields":{
+         "author":7,
+         "title":"Brave New World Revisited"
+      }
+   },
+   {
+      "model":"books.book",
+      "pk":16,
+      "fields":{
+         "author":7,
+         "title":"Ape and Essence"
+      }
+   }
+]
