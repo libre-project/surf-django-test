@@ -72,7 +72,6 @@ class BookList(ListView):
 class BookSearchView(ListView):
     model = Book
     context_object_name = 'books_list'
-    # template_name = 'search_form.html'
     def get_queryset(self):
         result = super(BookSearchView, self).get_queryset()
         query = self.request.GET.get('q')
