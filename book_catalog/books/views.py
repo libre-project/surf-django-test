@@ -55,12 +55,12 @@ class BookCreate(CreateView):
 class BookUpdate(UpdateView):
     model = Book
     fields = ['title', 'author']
-    success_url = reverse_lazy('author-list')
+    success_url = reverse_lazy('book-list')
 
 @method_decorator(login_required, name='dispatch')
 class BookDelete(DeleteView):
     model = Book
-    success_url = reverse_lazy('author-list')
+    success_url = reverse_lazy('book-list')
 
 class BookDetail(DetailView):
     model = Book

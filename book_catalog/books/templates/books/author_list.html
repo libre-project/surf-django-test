@@ -1,9 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Авторы</h1>
-<ul class='list-group'>
-    {% for author in authors_list %}
-    <a class="list-group-item list-group-item-action "href="{% url 'author-detail' author.id %}">{{ author.name }}</a>
-    {% endfor %}
-</ul>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>id</th>
+            <th>Имя</th>
+            <th></th>
+        </tr>
+        <tbody>
+            {% for author in authors_list %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td><a href="{% url 'author-detail' author.id %}" >{{ author.name }}</a></td>
+                <td style="width: 200px">
+                {% if user.is_authenticated %}
+                    <a class="btn btn-primary btn-sm" href="{% url 'author-update' author.id %}">Изменить</a>
+                    <a class="btn btn-danger btn-sm" href="{% url 'author-delete' author.id %}">Удалить</a>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </thead>
+</table>
 {% endblock %}
