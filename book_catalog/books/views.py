@@ -1,27 +1,22 @@
 from django.shortcuts import render
-from django.shortcuts import get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
-from .models import Author, Book
 from django.db.models import Q
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Author, Book
 
-@method_decorator(login_required, name='dispatch')
-class AuthorCreate(CreateView):
+class AuthorCreate(LoginRequiredMixin, CreateView):
     model = Author
     fields = ['name']
     success_url = reverse_lazy('author-list')
 
-@method_decorator(login_required, name='dispatch')
-class AuthorUpdate(UpdateView):
+class AuthorUpdate(LoginRequiredMixin, UpdateView):
     model = Author
     fields = ['name']
 
-@method_decorator(login_required, name='dispatch')
-class AuthorDelete(DeleteView):
+class AuthorDelete(LoginRequiredMixin, DeleteView):
     model = Author
     success_url = reverse_lazy('author-list')
 
@@ -46,19 +41,16 @@ class AuthorSearchView(ListView):
             result = result.filter(author__icontains = name)
         return result
 
-@method_decorator(login_required, name='dispatch')
-class BookCreate(CreateView):
+class BookCreate(LoginRequiredMixin, CreateView):
     model = Book
     fields = ['title', 'author']
 
-@method_decorator(login_required, name='dispatch')
-class BookUpdate(UpdateView):
+class BookUpdate(LoginRequiredMixin, UpdateView):
     model = Book
     fields = ['title', 'author']
     success_url = reverse_lazy('book-list')
 
-@method_decorator(login_required, name='dispatch')
-class BookDelete(DeleteView):
+class BookDelete(LoginRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('book-list')
 
@@ -76,5 +68,5 @@ class BookSearchView(ListView):
         result = super(BookSearchView, self).get_queryset()
         query = self.request.GET.get('q')
         if query:
-            result = result.filter(Q(title__icontains = query) | Q(author__name__icontains = query))
+            result = result.filter(Q(title__icontains=query) | Q(author__name__icontains=query))
         return result

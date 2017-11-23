@@ -26,7 +26,7 @@ class Book(models.Model):
         on_delete=models.CASCADE,
         related_name="book",
         related_query_name="books",
-        verbose_name = 'Автор')
+        verbose_name='Автор')
     title = models.CharField(max_length=100, verbose_name='Название')
 
     class Meta:
