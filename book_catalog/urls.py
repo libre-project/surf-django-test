@@ -16,8 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
-from .books.views import AuthorCreate, AuthorUpdate, AuthorDelete, AuthorDetail
-from .books.views import BookCreate, BookUpdate, BookDelete, BookDetail, BookSearchView
+from .books.views import AuthorCreate, AuthorUpdate, AuthorDelete, AuthorDetail, AuthorList
+from .books.views import BookCreate, BookUpdate, BookDelete, BookDetail, BookList, BookSearchView
 
 urlpatterns = [
     url(r'^$', BookList.as_view(), name='home'),
